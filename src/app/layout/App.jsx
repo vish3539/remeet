@@ -1,7 +1,19 @@
+import { useState } from 'react'
+import EventDashBoard from "../../features/events/eventDashBoard/EventDashBoard";
+import Nav from "../../features/events/nav/Nav";
+import { Container } from "semantic-ui-react";
+
 function App() {
+  const [formShow, setFormShow] = useState(false);
+  const onHandleEventForm = () => {
+    setFormShow(() => !formShow)
+  }
   return (
-    <div className="App">
-      <h1>Re-vents</h1>
+    <div>
+      <Nav toggleForm={onHandleEventForm} />
+      <Container className='main'>
+        <EventDashBoard showForm={formShow} toggleForm={onHandleEventForm} />
+      </Container>
     </div>
   );
 }
