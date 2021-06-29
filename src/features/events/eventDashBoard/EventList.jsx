@@ -1,11 +1,12 @@
 import React from 'react'
 import EventListItem from './EventListItem'
 
-function EventList({ sampleData }) {
+function EventList({ sampleData, selectEvent, deleteEvent }) {
     return (
         <div>
             {sampleData.map(event => (
                 <EventListItem
+                    event={event}
                     key={event.id}
                     title={event.title}
                     hostedBy={event.hostedBy}
@@ -13,6 +14,8 @@ function EventList({ sampleData }) {
                     date={event.date}
                     venue={event.venue}
                     hostPhotoURL={event.hostPhotoURL}
+                    selectEvent={selectEvent}
+                    deleteEvent={deleteEvent}
                 />
             ))}
         </div>
