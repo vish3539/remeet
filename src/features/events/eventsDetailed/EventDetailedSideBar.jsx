@@ -1,7 +1,7 @@
 import React from 'react'
 import { Segment, Item } from 'semantic-ui-react'
 
-function EventDetailedSideBar() {
+function EventDetailedSideBar({ attendies }) {
     return (
         <>
             <Segment
@@ -12,26 +12,21 @@ function EventDetailedSideBar() {
                 inverted
                 color="teal"
             >
-                2 People Going
-</Segment>
+                {attendies.length}{attendies.length > 1 ? " Peoples Going" : "People Going"}
+            </Segment>
             <Segment attached>
                 <Item.Group relaxed divided>
-                    <Item style={{ position: 'relative' }}>
-                        <Item.Image size="tiny" src='/assets/user.png' />
-                        <Item.Content verticalAlign="middle">
-                            <Item.Header as="h3">
-                                <span>Tom</span>
-                            </Item.Header>
-                        </Item.Content>
-                    </Item>
-                    <Item style={{ position: 'relative' }}>
-                        <Item.Image size="tiny" src='/assets/user.png' />
-                        <Item.Content verticalAlign="middle">
-                            <Item.Header as="h3">
-                                <span>Bob</span>
-                            </Item.Header>
-                        </Item.Content>
-                    </Item>
+                    {attendies.map(attender =>
+                        <Item key={attender.id} style={{ position: 'relative' }}>
+                            <Item.Image size="tiny" src={attender.photoURL || '/assets/user.png'} />
+                            <Item.Content verticalAlign="middle">
+                                <Item.Header as="h3">
+                                    <span>{attender.name}</span>
+                                </Item.Header>
+                            </Item.Content>
+                        </Item>
+                    )}
+
                 </Item.Group>
             </Segment>
         </>

@@ -4,10 +4,16 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './app/layout/App'
 import 'semantic-ui-css/semantic.min.css'
 import './app/layout/styles.css'
+import { Provider } from 'react-redux';
+import { configureStore } from './app/store/configureStore';
+import ScrollToTop from './app/layout/ScrollToTop';
 //import reportWebVitals from './reportWebVitals';
+const store = configureStore();
 
 ReactDOM.render(
-  <BrowserRouter><App /></BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter><ScrollToTop /><App /></BrowserRouter>
+  </Provider>
   , document.getElementById('root')
 );
 

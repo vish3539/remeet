@@ -22,7 +22,9 @@ function Nav({ toggleForm }) {
                     />
                     Re-meet
         </Menu.Item>
-                <Menu.Item name="Events" />
+                <Menu.Item as={NavLink} exact to='/events' name="Events" />
+                <Menu.Item as={NavLink} exact to='/sandbox' name="Sandbox" />
+
                 {authenticated &&
                     <Menu.Item>
                         <Button as={NavLink} to='/createevent' onClick={toggleForm} positive inverted content="Create Event" />

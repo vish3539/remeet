@@ -2,18 +2,21 @@ import React from "react";
 import { Link } from 'react-router-dom'
 import { Segment, Item, Icon, List, Button } from "semantic-ui-react";
 import EventListAttendies from "./EventListAttendies";
+import { useDispatch } from "react-redux";
+import { deleteEvent } from "../eventAction";
 
-function EventListItem({ deleteEvent, title, hostedBy, description, date, venue, hostPhotoURL, selectEvent, event }) {
-    //console.log(event)
+function EventListItem({ event }) {
+
+    const dispatch = useDispatch()
     return (
         <Segment.Group>
             <Segment>
                 <Item.Group>
                     <Item>
-                        <Item.Image size="tiny" circular src={hostPhotoURL} />
+                        <Item.Image size="tiny" circular src={event.hostPhotoURL} />
                         <Item.Content>
-                            <Item.Header content={title} />
-                            <Item.Description>{hostedBy}</Item.Description>
+                            <Item.Header content={event.title} />
+                            <Item.Description>{event.hostedBy}</Item.Description>
                         </Item.Content>
                     </Item>
                 </Item.Group>
@@ -21,9 +24,9 @@ function EventListItem({ deleteEvent, title, hostedBy, description, date, venue,
             <Segment>
                 <span>
                     <Icon name="clock" />
-                    {date}
+                    {event.date}
                     <Icon name="marker" />
-                    {venue}
+                    {event.venue}
                 </span>
             </Segment>
             <Segment secondary>
@@ -34,14 +37,14 @@ function EventListItem({ deleteEvent, title, hostedBy, description, date, venue,
                 </List>
             </Segment>
             <Segment clearing>
-                <div>{description}</div>
+                <div>{event.description}</div>
                 <Button
                     as={Link} to={`/events/${event.id}`}
                     color="teal"
                     floated="right"
                     content="View" />
                 <Button
-                    onClick={() => deleteEvent(event.id)}
+                    onClick={() => dispatch(deleteEvent(event.id))}
                     color="red"
                     floated="right"
                     content="Delete"

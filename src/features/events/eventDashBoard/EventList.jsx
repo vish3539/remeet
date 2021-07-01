@@ -14,8 +14,6 @@ function EventList({ sampleData, selectEvent, deleteEvent }) {
                     date={event.date}
                     venue={event.venue}
                     hostPhotoURL={event.hostPhotoURL}
-                    selectEvent={selectEvent}
-                    deleteEvent={deleteEvent}
                 />
             ))}
         </div>
