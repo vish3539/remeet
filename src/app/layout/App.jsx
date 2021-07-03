@@ -6,11 +6,13 @@ import HomePage from '../../features/home/HomePage';
 import EventsDetailedPage from '../../features/events/eventsDetailed/EventsDetailedPage';
 import EventForm from '../../features/events/eventForm/EventForm';
 import SandBox from "../../features/sandBox/SandBox";
+import ModalManager from "../common/modals/ModalManager";
 
 function App() {
   const { key } = useLocation()
   return (
-    <div>
+    <>
+      <ModalManager />
       <Route exact path='/' component={HomePage} />
       <Route path={'/(.+)'} render={() => (
         <>
@@ -25,7 +27,7 @@ function App() {
         </>
       )} />
 
-    </div>
+    </>
   );
 }
 export default App;
