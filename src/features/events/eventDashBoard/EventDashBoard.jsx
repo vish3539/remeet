@@ -2,27 +2,28 @@ import React from 'react'
 import { Grid } from 'semantic-ui-react'
 import EventList from './EventList'
 import { useSelector } from 'react-redux';
+import LoadingComponent from '../../../app/layout/LoadingComponent';
+import EventListItemPlaceholder from './EventListItemPlaceholder';
+import EventFilters from './EventFilters';
 
 function EventDashBoard() {
-    //const [events, setEvents] = useState(sampleData);
     const { events } = useSelector(state => state.event)
-    // function handleCreateEvent(event) {
-    //     setData([...data, event])
-    // }
-    // function handleEventupdate(updatedEvent) {
-    //     setData(data.map((event) => (event.id === updatedEvent.id ? updatedEvent : event)));
-    // }
-    function handleDeleteEvent(eventID) {
-        // setEvents(events.filter((evt) => evt.id !== eventID))
-    }
+    const { loading } = useSelector(state => state.async);
+
     return (
         <Grid>
             <Grid.Column width={10}>
-                <EventList sampleData={events} deleteEvent={handleDeleteEvent} />
+                {loading &&
+                    <>
+                        <EventListItemPlaceholder />
+                        <EventListItemPlaceholder />
+                    </>
+                }
+                <EventList sampleData={events} />
             </Grid.Column>
 
             <Grid.Column width={6}>
-                <h3>Event Filters</h3>
+                <EventFilters />
             </Grid.Column>
         </Grid>
     )

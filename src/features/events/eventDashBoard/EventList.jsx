@@ -1,7 +1,7 @@
 import React from 'react'
 import EventListItem from './EventListItem'
 
-function EventList({ sampleData, selectEvent, deleteEvent }) {
+function EventList({ sampleData }) {
     return (
         <div>
             {sampleData.map(event => (
