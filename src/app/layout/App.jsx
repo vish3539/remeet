@@ -8,6 +8,7 @@ import EventForm from '../../features/events/eventForm/EventForm';
 import SandBox from "../../features/sandBox/SandBox";
 import ModalManager from "../common/modals/ModalManager";
 import { ToastContainer } from "react-toastify";
+import ErrorComponent from "../common/errors/ErrorComponent";
 
 function App() {
   const { key } = useLocation()
@@ -25,6 +26,7 @@ function App() {
             <Route exact path='/sandbox' component={SandBox} />
             <Route exact path='/events/:id' component={EventsDetailedPage} />
             <Route path={['/createevent', '/manage/:id']} component={EventForm} key={key} />
+            <Route path='/error' component={ErrorComponent} />
           </Container>
         </>
       )} />

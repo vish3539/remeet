@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from 'react-router-dom'
-import { Segment, Item, Icon, List, Button } from "semantic-ui-react";
+import { Segment, Item, Icon, List, Button, Label } from "semantic-ui-react";
 import EventListAttendies from "./EventListAttendies";
 import { useDispatch } from "react-redux";
 import { deleteEvent } from "../eventAction";
 import { format } from 'date-fns'
+import { deleteEventInFirestor } from "../../../app/firestore/firestoreService";
 
 function EventListItem({ event }) {
 
@@ -18,6 +19,14 @@ function EventListItem({ event }) {
                         <Item.Content>
                             <Item.Header content={event.title} />
                             <Item.Description>{event.hostedBy}</Item.Description>
+                            {event.isCancelled && (
+                                <Label
+                                    style={{ top: '-40px' }}
+                                    ribbon='right'
+                                    color='red'
+                                    content='This event has been cancelled'
+                                />
+                            )}
                         </Item.Content>
                     </Item>
                 </Item.Group>
@@ -47,7 +56,7 @@ function EventListItem({ event }) {
                     floated="right"
                     content="View" />
                 <Button
-                    onClick={() => dispatch(deleteEvent(event.id))}
+                    onClick={() => deleteEventInFirestor(event.id)}
                     color="red"
                     floated="right"
                     content="Delete"
