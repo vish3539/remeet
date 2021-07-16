@@ -9,11 +9,13 @@ function SignedOutMenu({ setAuthenticated }) {
         <Menu.Item position="right">
             {/* modalType: LoginForm should be defined the same way its defined in ModalManager.js */}
             <Button onClick={() => dispatch(openModal({ modalType: 'LoginForm' }))} basic inverted content="Login" />
+
             <Button
                 basic
                 inverted
                 content="Register"
                 style={{ marginLeft: "0.5em" }}
+                onClick={() => dispatch(openModal({ modalType: 'RegisterForm' }))}
             />
         </Menu.Item>
 
